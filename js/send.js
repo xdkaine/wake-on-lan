@@ -1,21 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.getElementById("login-form");
-    const errorMessage = document.getElementById("login-error-msg2");
-
-    loginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        if (username === "1" && password === "1") {
-            alert("Passed!");
-            postMessage("blahblah")
-        } else {
-            document.getElementById("login-error-msg2").style.opacity = "1";
-        }
-    });
-});
-
 // disable rightclick
 document.addEventListener("contextmenu", function (disablemouse) {
     disablemouse.preventDefault();
@@ -39,3 +21,16 @@ for (i = 0; i < coll.length; i++) {
   });
 } 
 
+document.addEventListener("DOMContentLoaded", function () {
+  const failedAlert = document.getElementById("failed");
+  const sentAlert = document.getElementById("sent");
+  // Set opacity of the "failed" alert to 1
+  failedAlert.style.opacity = "0";
+  sentAlert.style.opacity = "0";
+  
+  document.getElementById("powerpc").addEventListener("click", function() {
+    // Simulate a successful WoL packet transmission (replace with your AJAX request)
+      // Change the visibility of the alerts
+      sentAlert.style.opacity = "1";
+  });
+});
