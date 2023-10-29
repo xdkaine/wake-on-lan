@@ -21,6 +21,21 @@ for (i = 0; i < coll.length; i++) {
   });
 } 
 
+const wol = require('node-wol');
+
+// Replace these values with the actual MAC address of your PC and the broadcast IP address.
+const macAddress = 'D4:5D:64:D5:A9:72';  // Replace with your PC's MAC address
+const broadcastAddress = '192.168.1.51'; // Replace with your network's broadcast address
+
+// Send the magic packet to wake the PC
+wol.wake(macAddress, { address: broadcastAddress }, (error) => {
+  if (error) {
+    console.error('Error sending magic packet:', error);
+  } else {
+    console.log('Magic packet sent successfully.');
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const failedAlert = document.getElementById("failed");
   const sentAlert = document.getElementById("sent");
@@ -29,8 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
   sentAlert.style.opacity = "0";
   
   document.getElementById("powerpc").addEventListener("click", function() {
-    // Simulate a successful WoL packet transmission (replace with your AJAX request)
-      // Change the visibility of the alerts
-      sentAlert.style.opacity = "1";
+    wol.wake(macAddress, { address: broadcastAddress }, (error) => {
+      if (error) {
+        failedAlert.style.opacity = "1";
+        sentAlert.style.opacity = "0";
+      } else {
+        failedAlert.style.opacity = "0";
+        sentAlert.style.opacity = "1";
+      }
+    });
   });
 });
