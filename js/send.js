@@ -22,11 +22,11 @@ for (i = 0; i < coll.length; i++) {
 }  */
 
 
-const wol = require('node-wol');
+/* const wol = require('node-wol');
 
 const macAddress = 'D4:5D:64:D5:A9:72';
 const broadcastAddress = '192.168.1.51'; 
-
+ */
 document.addEventListener("DOMContentLoaded", function () {
   const failedAlert = document.getElementById("failed");
   const sentAlert = document.getElementById("sent");
