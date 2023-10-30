@@ -1,4 +1,4 @@
-// disable rightclick
+/* // disable rightclick
 document.addEventListener("contextmenu", function (disablemouse) {
     disablemouse.preventDefault();
     document.getElementById('smefpw2').innerHTML += "<span style=\"font-family: verdana, sans-serif;\"><span style=\"color: #009EBD;\">[smef]</span> context menu is disabled</font><br>";
@@ -19,7 +19,8 @@ for (i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
   });
-} 
+}  */
+
 
 const wol = require('node-wol');
 
@@ -32,16 +33,20 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set opacity of the "failed" alert to 1
   failedAlert.style.opacity = "0";
   sentAlert.style.opacity = "0";
-  
-  document.getElementById("powerpc").addEventListener("click", function() {
-    wol.wake(macAddress, { address: broadcastAddress }, (error) => {
-      if (error) {
-        failedAlert.style.opacity = "1";
-        sentAlert.style.opacity = "0";
-      } else {
-        failedAlert.style.opacity = "0";
+
+  document.getElementById("powerpc").addEventListener("click", function () {
+    fetch('/wake')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
         sentAlert.style.opacity = "1";
-      }
-    });
+        failedAlert.style.opacity = "0";
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        sentAlert.style.opacity = "0";
+        failedAlert.style.opacity = "1";
+      });
   });
-});
+});  
+
