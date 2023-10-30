@@ -2,7 +2,7 @@ const express = require('express');
 const wol = require('node-wol');
 
 const app = express();
-const port = 9;
+const port = 3000;
 
 const macAddress = 'D4:5D:64:D5:A9:72';
 const broadcastAddress = '192.168.1.51';
