@@ -27,6 +27,10 @@ for (i = 0; i < coll.length; i++) {
 const macAddress = 'D4:5D:64:D5:A9:72';
 const broadcastAddress = '192.168.1.51'; 
  */
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const failedAlert = document.getElementById("failed");
   const sentAlert = document.getElementById("sent");
@@ -34,19 +38,44 @@ document.addEventListener("DOMContentLoaded", function () {
   failedAlert.style.opacity = "0";
   sentAlert.style.opacity = "0";
 
-  document.getElementById("powerpc").addEventListener("click", function () {
-    fetch('/wake')
-      .then(response => response.json())
+  document.getElementById("testButton").addEventListener("click", function () {
+    fetch('http://localhost:5502/test')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
         console.log(data);
-        sentAlert.style.opacity = "1";
-        failedAlert.style.opacity = "0";
+        // Handle the response data here
       })
       .catch(error => {
         console.error("Error:", error);
-        sentAlert.style.opacity = "0";
-        failedAlert.style.opacity = "1";
+        // Handle the error here, for example:
+        alert("Failed to fetch test data.");
       });
   });
-});  
-
+  
+   document.getElementById("powerpc").addEventListener("click", function () {
+    fetch('/wake')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      sentAlert.style.opacity = "1";
+      failedAlert.style.opacity = "0";
+    })
+    .catch(error => {
+      console.log("Error:", error);
+      // Handle the error here, for example:
+      alert(error);
+      sentAlert.style.opacity = "0";
+      failedAlert.style.opacity = "1";
+    });
+  }); 
+});
