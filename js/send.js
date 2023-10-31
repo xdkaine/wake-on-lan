@@ -39,16 +39,17 @@ document.addEventListener("DOMContentLoaded", function () {
   sentAlert.style.opacity = "0";
 
   document.getElementById("testButton").addEventListener("click", function () {
-    fetch('http://localhost:5502/test')
+    fetch('http://localhost:3301/test')
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw error;
         }
         return response.json();
       })
       .then(data => {
         console.log(data);
         // Handle the response data here
+        alert(data)
       })
       .catch(error => {
         console.error("Error:", error);
