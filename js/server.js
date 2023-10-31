@@ -9,7 +9,7 @@ const port2 = 3301;
 const app = express();
 
 const macAddress = 'D4:5D:64:D5:A9:72';
-const broadcastAddress = '192.168.1.511';
+const broadcastAddress = '192.168.1.51';
 
 // Allow requests from a specific origin (replace with your website's domain)
 const allowedOrigins = ['http://127.0.0.1:5502'];

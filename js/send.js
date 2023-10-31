@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then(data => {
       console.log(data);
-      alert(data);
       sentAlert.style.opacity = "1";
       failedAlert.style.opacity = "0";
     })
