@@ -4,7 +4,7 @@ const wol = require('node-wol')
 
 const cors = require('cors');
 
-const port2 = 3301;
+const port2 = 3300;
 
 const app = express();
 
@@ -33,10 +33,6 @@ app.use(cors(corsOptions));
 app.listen(port2, () => {
   console.log('Server is running on port ', port2);
 });
-
-app.get('/test', (req, res) => {
-    res.json({ message: 'This is a test response debug' });
-  });
 
 app.get('/wake', (req, res) => {
   wol.wake(macAddress, { address: broadcastAddress }, (error) => {

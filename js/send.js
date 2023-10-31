@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   
    document.getElementById("powerpc").addEventListener("click", function () {
-    fetch('http://localhost:3301/wake')
+    fetch('http://localhost:3300/wake')
     .then(response => {
       if (!response.ok) {
         throw response.text;
