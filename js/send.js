@@ -38,25 +38,51 @@ document.addEventListener("DOMContentLoaded", function () {
   failedAlert.style.opacity = "0";
   sentAlert.style.opacity = "0";
 
-  document.getElementById("testButton").addEventListener("click", function () {
+/*   document.getElementById("testButton").addEventListener("click", function () {
     fetch('http://localhost:3301/test')
       .then(response => {
+        const jsonString2 = '{"message": "This is a test response"}';
+        const data = JSON.parse(response);
         if (!response.ok) {
-          throw error;
+          throw response.json;
+          console.log(response.json);
         }
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        console.log(data.message);
         // Handle the response data here
-        alert(data)
+        console.log(data.message);
+        alert(data.message);
       })
       .catch(error => {
         console.error("Error:", error);
         // Handle the error here, for example:
         alert("Failed to fetch test data.");
+        console.log(error, "1");
+      });
+  }); */
+
+  document.getElementById("testButton").addEventListener("click", function () {
+    fetch('http://localhost:3301/test')
+      .then(response => {
+        if (!response.ok) {
+          throw response;
+        }
+        return response.text(); // Read the response as text
+      })
+      .then(data => {
+        console.log(data); // This will log the plain text response
+        // Handle the response data here
+        alert(data);
+      })
+      .catch(error => {
+        console.error("2Error:", error);
+        // Handle the error here
+        alert("Failed to fetch test data.2");
       });
   });
+  
   
    document.getElementById("powerpc").addEventListener("click", function () {
     fetch('/wake')

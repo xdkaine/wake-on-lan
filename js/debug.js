@@ -30,5 +30,5 @@ app2.listen(port2, () => {
 });
 
 app2.get('/test', (req, res) => {
-    res.json({ message: 'This is a test response' });
+    res.json({ message: 'This is a test response debug' });
   });
