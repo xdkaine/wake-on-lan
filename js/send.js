@@ -1,4 +1,4 @@
-/* // disable rightclick
+// disable rightclick
 document.addEventListener("contextmenu", function (disablemouse) {
     disablemouse.preventDefault();
     document.getElementById('smefpw2').innerHTML += "<span style=\"font-family: verdana, sans-serif;\"><span style=\"color: #009EBD;\">[smef]</span> context menu is disabled</font><br>";
@@ -19,7 +19,7 @@ for (i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
   });
-}  */
+} 
 
 
 
