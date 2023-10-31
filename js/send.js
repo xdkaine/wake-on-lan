@@ -22,14 +22,6 @@ for (i = 0; i < coll.length; i++) {
 }  */
 
 
-/* const wol = require('node-wol');
-
-const macAddress = 'D4:5D:64:D5:A9:72';
-const broadcastAddress = '192.168.1.51'; 
- */
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const failedAlert = document.getElementById("failed");
@@ -37,31 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set opacity of the "failed" alert to 1
   failedAlert.style.opacity = "0";
   sentAlert.style.opacity = "0";
-
-/*   document.getElementById("testButton").addEventListener("click", function () {
-    fetch('http://localhost:3301/test')
-      .then(response => {
-        const jsonString2 = '{"message": "This is a test response"}';
-        const data = JSON.parse(response);
-        if (!response.ok) {
-          throw response.json;
-          console.log(response.json);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data.message);
-        // Handle the response data here
-        console.log(data.message);
-        alert(data.message);
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        // Handle the error here, for example:
-        alert("Failed to fetch test data.");
-        console.log(error, "1");
-      });
-  }); */
 
   document.getElementById("testButton").addEventListener("click", function () {
     fetch('http://localhost:3301/test')
@@ -85,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
   
    document.getElementById("powerpc").addEventListener("click", function () {
-    fetch('/wake')
+    fetch('http://localhost:3301/wake')
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw response.text;
       }
-      return response.json();
+      return response.text();
     })
     .then(data => {
       console.log(data);

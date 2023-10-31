@@ -1,32 +1,42 @@
 const express = require('express');
-const wol = require('node-wol');
+
+const wol = require('node-wol')
+
+const cors = require('cors');
+
+const port2 = 3301;
 
 const app = express();
-const port = 3302;
 
 const macAddress = 'D4:5D:64:D5:A9:72';
 const broadcastAddress = '192.168.1.51';
 
-/* app.get('/wake', (req, res) => {
-  wol.wake(macAddress, 
-    { address: broadcastAddress }, (error) => {
-    if (error) {
-      res.status(500).json({ error: 'WOL failed' });
+// Allow requests from a specific origin (replace with your website's domain)
+const allowedOrigins = ['http://127.0.0.1:5502'];
+
+// CORS middleware configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
     } else {
-      res.json({ message: 'WOL packet sent successfully' });
+      callback(new Error('Not allowed by CORS'));
     }
-  });
-}); */
+  },
+};
 
-/* app.get('/wake', (req, res) => {
-  wol.wake(macAddress);
-})
- */
+// Use CORS middleware
+app.use(cors(corsOptions));
 
+// ... Define your routes and other server code ...
 
-app.listen(port, () => {
-  console.log(`App2 Server is running on http://localhost:${port}`);
+app.listen(port2, () => {
+  console.log('Server is running on port ', port2);
 });
+
+app.get('/test', (req, res) => {
+    res.json({ message: 'This is a test response debug' });
+  });
 
 app.get('/wake', (req, res) => {
   wol.wake(macAddress, { address: broadcastAddress }, (error) => {
